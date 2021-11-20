@@ -1,0 +1,30 @@
+.weather-card{
+    width: 250px;
+    height: auto;
+    margin: 20px
+}
+.header{
+    position: -webkit-sticky;
+    position: sticky;
+    top:0px;
+    display: flex;
+    padding: 10px;
+    background-color:rgb(250, 128, 114);
+    z-index:1000;
+}
+.header h1{
+    margin: auto;
+    
+}
+
+.flexcontainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#content{
+    display: flex;
+    padding: 50px;
+    flex-wrap: wrap;
+}
