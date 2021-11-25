@@ -3,18 +3,16 @@ result.addEventListener('click',()=>{
     let city = document.getElementById('city').value;
     console.log(city);
     getWeather(city);
+    
 })
 const content = document.getElementById('content')
 function getWeather(city) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET',`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a052a3120e18eac3ee88a81e1fee3918`)
-    xhr.send()
-    xhr.onload = ()=>{
-        const data = JSON.parse(xhr.response);
-        console.table(data[`weather`][0]);
-        console.table(data[`main`]);
-        createCard(city,data)
-    }
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a052a3120e18eac3ee88a81e1fee3918`).then(res =>{
+        return res.json()
+    }).then(res =>{
+        createCard(city,res)
+    })
 }
 
 function createCard(city,data){
@@ -65,3 +63,8 @@ function createCard(city,data){
         card.remove();
     })
 }
+document.addEventListener('DOMContentLoaded',()=>{
+    getWeather('Agartala')
+    getWeather('Kolkata')
+    getWeather('belonia')
+})

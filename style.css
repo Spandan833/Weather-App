@@ -1,14 +1,14 @@
 .weather-card{
     width: 250px;
     height: auto;
-    margin: 20px
+    margin: 10px 20px;
 }
 .header{
     position: -webkit-sticky;
     position: sticky;
     top:0px;
     display: flex;
-    padding: 10px;
+    padding: 10px 10px 20px 25px;
     background-color:rgb(250, 128, 114);
     z-index:1000;
 }
@@ -21,10 +21,13 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    align-items:flex-end;
+    gap: 20px;
 }
 
 #content{
     display: flex;
-    padding: 50px;
+    padding-top: 50px;
+    padding-right: 0px;
     flex-wrap: wrap;
 }
