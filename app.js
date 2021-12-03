@@ -6,12 +6,15 @@ result.addEventListener('click',()=>{
     
 })
 const content = document.getElementById('content')
-function getWeather(city) {
+async function getWeather(city) {
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a052a3120e18eac3ee88a81e1fee3918`).then(res =>{
+    await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a052a3120e18eac3ee88a81e1fee3918`).then(res =>{
         return res.json()
     }).then(res =>{
         createCard(city,res)
+        return new Promise((resolve,reject) =>{
+            resolve(1)
+        })
     })
 }
 
@@ -63,8 +66,9 @@ function createCard(city,data){
         card.remove();
     })
 }
-document.addEventListener('DOMContentLoaded',()=>{
-    getWeather('Agartala')
-    getWeather('Kolkata')
-    getWeather('belonia')
+
+document.addEventListener('DOMContentLoaded',async ()=>{
+   await getWeather('Agartala');
+   await getWeather('Belonia');
+   await getWeather('Kolkata');
 })
