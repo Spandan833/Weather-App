@@ -7,15 +7,10 @@ result.addEventListener('click',()=>{
 })
 const content = document.getElementById('content')
 async function getWeather(city) {
-
-    await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a052a3120e18eac3ee88a81e1fee3918`).then(res =>{
-        return res.json()
-    }).then(res =>{
-        createCard(city,res)
-        return new Promise((resolve,reject) =>{
-            resolve(1)
-        })
-    })
+    let blob = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a052a3120e18eac3ee88a81e1fee3918`)
+    let data = await blob.json();
+    console.log(data.weather);
+    createCard(city,data)
 }
 
 function createCard(city,data){
@@ -25,16 +20,16 @@ function createCard(city,data){
     content.appendChild(card)
     const card_body = document.createElement('div')
     card_body.classList.add('card-body')
-    
+    card_body.style.display = "flex"
     card.appendChild(card_body)
     const name_div = document.createElement('div')
     name_div.classList.add('card-title')
     name_div.classList.add('mt-1')
     name_div.style.cssText ="font-weight: bold; font-family: monospace; font-size: 24px; text-align: center;"
     card_body.appendChild(name_div)
-    card.style.display = "flex !important"
-    card.style.flexDirection = "column"
-    card.style.alignItems = "center"
+    card_body.style.flexDirection = "column"
+    card_body.style.alignItems = "center"
+    card_body.style.justifyContent = "center"
     const name = city
     name_div.textContent = name
     const ico = document.createElement('img')
@@ -42,15 +37,15 @@ function createCard(city,data){
     card_body.appendChild(ico)
     const temp_div = document.createElement('div')
     temp_div.classList.add('card-subtitle')
-    temp_div.classList.add('mt-4')
-    temp_div.style.cssText = "font-size: 20px; margin-bottom: 30px; text-align: center"
+    temp_div.classList.add('mt-1')
+    temp_div.style.cssText = "font-size: 20px; margin-bottom: 10px; text-align: center"
 
     temp_div.textContent = `Temperature: ${Math.round(data['main'][`temp`]-273)}C`
     card_body.appendChild(temp_div)
     const pressure_div = document.createElement('div')
     pressure_div.classList.add('card-subtitle')
-    pressure_div.style.cssText = "font-size: 20px; margin-bottom: 30px; text-align: center"
-    pressure_div.textContent = `Pressure: ${data['main'][`pressure`]}`
+    pressure_div.style.cssText = "font-style: bold;font-size: 20px; margin-bottom: 10px; text-align: center"
+    pressure_div.textContent = `${data['weather'][0][`description`]}`
     card_body.appendChild(pressure_div)
 
 
