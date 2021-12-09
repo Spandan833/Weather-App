@@ -32,9 +32,10 @@ function createCard(city,data){
     name_div.classList.add('mt-1')
     name_div.style.cssText ="font-weight: bold; font-family: monospace; font-size: 24px; text-align: center;"
     card_body.appendChild(name_div)
-    card.style.display = "flex !important"
-    card.style.flexDirection = "column"
-    card.style.alignItems = "center"
+    card_body.style.display = "flex"
+    card_body.style.flexDirection = "column"
+    card_body.style.alignItems = "center"
+    card_body.style.justifyContent = "center"
     const name = city
     name_div.textContent = name
     const ico = document.createElement('img')
