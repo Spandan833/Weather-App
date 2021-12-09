@@ -7,10 +7,14 @@ result.addEventListener('click',()=>{
 })
 const content = document.getElementById('content')
 async function getWeather(city) {
-    let blob = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a052a3120e18eac3ee88a81e1fee3918`)
-    let data = await blob.json();
-    console.table(data.weather[0]);
-    createCard(city,data)
+    try{
+        let blob = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a052a3120e18eac3ee88a81e1fee3918`)
+        let data = await blob.json();
+        console.table(data.weather[0]);
+        createCard(city,data)
+    }catch(e){
+        alert("Invalid City")
+    }
 }
 
 function createCard(city,data){
