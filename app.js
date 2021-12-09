@@ -9,7 +9,7 @@ const content = document.getElementById('content')
 async function getWeather(city) {
     let blob = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a052a3120e18eac3ee88a81e1fee3918`)
     let data = await blob.json();
-    console.log(data.weather);
+    console.table(data.weather[0]);
     createCard(city,data)
 }
 
@@ -45,7 +45,7 @@ function createCard(city,data){
     const pressure_div = document.createElement('div')
     pressure_div.classList.add('card-subtitle')
     pressure_div.style.cssText = "font-style: bold;font-size: 20px; margin-bottom: 10px; text-align: center"
-    pressure_div.textContent = `${data['weather'][0][`description`]}`
+    pressure_div.textContent = `${data['weather'][0][`main`]}`
     card_body.appendChild(pressure_div)
 
 
@@ -53,8 +53,8 @@ function createCard(city,data){
     remove_bttn.classList.add('btn')
     remove_bttn.classList.add('btn-danger')
     remove_bttn.classList.add('mt-2')
-
     card_body.appendChild(remove_bttn)
+    
     remove_bttn.textContent = "DELETE"
     remove_bttn.style.cssText = "width:100%"
     remove_bttn.addEventListener('click',()=>{
